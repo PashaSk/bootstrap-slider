@@ -22,8 +22,5 @@
     "**/.*",
     "node_modules",
     "bower_components"
-  ],
-  "dependencies": {
-    "seiyria-bootstrap-slider": "https://github.com/PashaSk/bootstrap-slider.git#10.01"
-  }
+  ]
 }
