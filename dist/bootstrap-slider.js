@@ -1422,6 +1422,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 
 				this.mousemove = this._mousemove.bind(this);
 				this.mouseup = this._mouseup.bind(this);
+				this.mouseout = this._mouseout.bind(this);
 
 				if (this.touchCapable) {
 					// Touch: Bind touch events:
@@ -1431,6 +1432,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				// Bind mouse events:
 				document.addEventListener("mousemove", this.mousemove, false);
 				document.addEventListener("mouseup", this.mouseup, false);
+				document.addEventListener("mouseout", this.mouseout, false);
 
 				this._state.inDrag = true;
 				var newValue = this._calculateValue();
@@ -1531,6 +1533,13 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				ev.cancelBubble = true;
 				ev.returnValue = false;
 			},
+            _mouseout: function(e) {
+                e = e ? e : window.event;
+                var from = e.relatedTarget || e.toElement;
+                if (!from || from.nodeName == "HTML") {
+                    this.mouseup();
+                }
+            },
 			_mousemove: function _mousemove(ev) {
 				if (!this._state.enabled) {
 					return false;
