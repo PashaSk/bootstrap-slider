@@ -1536,7 +1536,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
             _mouseout: function(e) {
                 e = e ? e : window.event;
                 var from = e.relatedTarget || e.toElement;
-                if (!from || from.nodeName == "HTML") {
+                if ((!from || from.nodeName == "HTML") && this._state.inDrag === true) {
                     this.mouseup();
                 }
             },
